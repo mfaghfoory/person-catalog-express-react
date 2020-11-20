@@ -1,0 +1,1 @@
+A very simple application created by express js for its back-end and react for its front-end
