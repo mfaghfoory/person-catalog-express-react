@@ -1,66 +1,35 @@
 const express = require("express");
-const { body, param, validationResult } = require("express-validator");
+const { body, param } = require("express-validator");
 
 const route = express.Router();
 
 const personService = new (require("../services/person-service"))();
+const baseController = new (require("./base-controller"))(personService);
 
 route.use(require("../shared/basic-authentication"));
 
 route.get("/", async (req, res) => {
-  const data = await personService.getAll();
-  res.send(data);
+  baseController.getAll(req, res);
 });
 
 route.get("/:id", async (req, res) => {
-  const obj = await personService.findById(req.params.id);
-  if (obj) return res.status(200).send(obj);
-  return res.status(404).send();
+  baseController.getById(req, res);
 });
 
 route.post("/", validateModel(), (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  personService
-    .addNew(req.body)
-    .then((obj) => {
-      res.status(201).send(obj);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+  baseController.create(req, res);
 });
 
 route.put(
   "/:id",
   [...validateModel(), param("id").notEmpty().isNumeric()],
   (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    personService
-      .update(req.params.id, req.body)
-      .then((obj) => {
-        res.status(202).send(obj);
-      })
-      .catch((err) => {
-        res.status(400).send(err.message);
-      });
+    baseController.update(req, res);
   }
 );
 
 route.delete("/:id", (req, res) => {
-  personService
-    .delete(req.params.id)
-    .then((obj) => {
-      res.status(202).send();
-    })
-    .catch((err) => {
-      res.status(400).send(err.message);
-    });
+  baseController.delete(req, res);
 });
 
 function validateModel() {
