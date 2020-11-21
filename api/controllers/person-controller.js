@@ -8,7 +8,7 @@ const personService = new (require("../services/person-service"))();
 route.use(require("../shared/basic-authentication"));
 
 route.get("/", async (req, res) => {
-  const data = await personService.getAllPersons();
+  const data = await personService.getAll();
   res.send(data);
 });
 
@@ -24,7 +24,7 @@ route.post("/", validateModel(), (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
   personService
-    .addNewPerson(req.body)
+    .addNew(req.body)
     .then((obj) => {
       res.status(201).send(obj);
     })
@@ -42,7 +42,7 @@ route.put(
       return res.status(400).json({ errors: errors.array() });
     }
     personService
-      .updatePerson(req.params.id, req.body)
+      .update(req.params.id, req.body)
       .then((obj) => {
         res.status(202).send(obj);
       })
@@ -54,7 +54,7 @@ route.put(
 
 route.delete("/:id", (req, res) => {
   personService
-    .deletePerson(req.params.id)
+    .delete(req.params.id)
     .then((obj) => {
       res.status(202).send();
     })
