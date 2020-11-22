@@ -1,8 +1,11 @@
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger");
 var cors = require("cors");
 const app = express();
 const registerRoutes = require("./routes");
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument()));
 app.use(cors());
 app.use(express.static("public"));
 // parse request bodies (req.body)

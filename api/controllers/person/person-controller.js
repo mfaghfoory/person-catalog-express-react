@@ -3,10 +3,10 @@ const { body, param } = require("express-validator");
 
 const route = express.Router();
 
-const personService = new (require("../services/person-service"))();
-const baseController = new (require("./base-controller"))(personService);
+const personService = new (require("../../services/person-service"))();
+const baseController = new (require("../base-controller"))(personService);
 
-route.use(require("../shared/basic-authentication"));
+route.use(require("../../shared/basic-authentication"));
 
 route.get("/", async (req, res) => {
   baseController.getAll(req, res);

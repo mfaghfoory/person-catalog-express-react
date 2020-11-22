@@ -1,0 +1,174 @@
+{
+  "endpoint": {
+    "/people": {
+      "post": {
+        "tags": ["people"],
+        "operationId": "create_person",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/person"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Operation is done successfully",
+            "schema": {
+              "$ref": "#/definitions/person"
+            }
+          },
+          "400": {
+            "description": "Could be for several reasons for example being invalid of the Model. Main reason will be returned"
+          },
+          "401": {
+            "description": "You don't have sufficient permission"
+          }
+        }
+      },
+      "get": {
+        "tags": ["people"],
+        "operationId": "get_person",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Operation is done successfully",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/person"
+              }
+            }
+          },
+          "404": {
+            "description": "Requested object not found"
+          },
+          "401": {
+            "description": "You don't have sufficient permission"
+          }
+        }
+      }
+    },
+    "/people/:id": {
+      "put": {
+        "tags": ["people"],
+        "operationId": "update_person",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "model",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/person"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Operation is done successfully",
+            "schema": {
+              "$ref": "#/definitions/person"
+            }
+          },
+          "400": {
+            "description": "Could be for several reasons for example being invalid of the Model. Main reason will be returned"
+          },
+          "401": {
+            "description": "You don't have sufficient permission"
+          }
+        }
+      },
+      "get": {
+        "tags": ["people"],
+        "operationId": "get_person",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation is done successfully",
+            "schema": {
+              "$ref": "#/definitions/person"
+            }
+          },
+          "404": {
+            "description": "Requested object not found"
+          },
+          "401": {
+            "description": "You don't have sufficient permission"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["people"],
+        "operationId": "update_person",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Operation is done successfully",
+            "schema": {
+              "$ref": "#/definitions/person"
+            }
+          },
+          "400": {
+            "description": "Could be for several reasons for example being invalid of the Model. Main reason will be returned"
+          },
+          "401": {
+            "description": "You don't have sufficient permission"
+          }
+        }
+      }
+    }
+  },
+  "types": {
+    "person": {
+      "required": ["name", "email", "bio"],
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "bio": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
