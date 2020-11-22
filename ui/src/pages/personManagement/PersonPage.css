@@ -1,0 +1,52 @@
+.dataTable {
+  width: 50%;
+  position: relative;
+  left: 25%;
+}
+
+.dataTable td,
+.dataTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.dataTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.dataTable tr:hover {
+  background-color: #ddd;
+}
+
+.dataTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.btn-blue {
+  background-color: royalblue;
+}
+.btn-green {
+  background-color: #4caf50;
+}
+.btn-red {
+  background-color: #f44336;
+}
+
+.row {
+  width: 100%;
+  text-align: center;
+}

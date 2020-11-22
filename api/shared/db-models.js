@@ -13,6 +13,7 @@ Person.init(
       autoIncrement: true,
     },
     name: DataTypes.STRING,
+    email: DataTypes.STRING,
     bio: DataTypes.STRING,
   },
   { sequelize, modelName: "person" }

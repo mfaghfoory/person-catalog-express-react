@@ -1,13 +1,15 @@
-const express = require('express');
+const express = require("express");
+var cors = require("cors");
 const app = express();
-const registerRoutes = require('./routes');
+const registerRoutes = require("./routes");
 
-app.use(express.static('public'));
+app.use(cors());
+app.use(express.static("public"));
 // parse request bodies (req.body)
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.get('/', async (req, res) => {
+app.get("/", async (req, res) => {
   res.send(__dirname);
 });
 
@@ -19,5 +21,5 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(9000, () => {
-  console.log('app is running');
+  console.log("app is running");
 });
