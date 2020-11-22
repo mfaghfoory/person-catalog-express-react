@@ -56,7 +56,7 @@
         }
       }
     },
-    "/people/:id": {
+    "/people/{id}": {
       "put": {
         "tags": ["people"],
         "operationId": "update_person",
@@ -65,7 +65,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "type": "integer",
             "format": "int32"
@@ -96,13 +96,13 @@
       },
       "get": {
         "tags": ["people"],
-        "operationId": "get_person",
+        "operationId": "get_person_by_id",
         "consumes": ["application/json"],
         "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "type": "integer",
             "format": "int32"
@@ -131,7 +131,7 @@
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "type": "integer",
             "format": "int32"
